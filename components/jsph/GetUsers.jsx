@@ -8,6 +8,6 @@ export default function GetUsers() {
   </>
   return <>
     {ids.map(id => <FetchUser id={id} key={id} />)}
-    <button onClick={()=>setIds(ids.concat(ids.length + 1))}>load users</button>
+    <button onClick={()=>setIds(ids.concat(ids.length + 1))}>load a user</button>
   </>
 }
