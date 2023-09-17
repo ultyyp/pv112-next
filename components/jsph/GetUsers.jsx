@@ -1,13 +1,34 @@
-import { useState } from "react";
+import React, { useState, useEffect } from "react";
 import FetchUser from "./FetchUser";
 
 export default function GetUsers() {
-  const [ids, setIds] = useState([1]);
-  if(ids.find(num => num == 10)) return <>
-    {ids.map(id => <FetchUser id={id} key={id} />)}
-  </>
-  return <>
-    {ids.map(id => <FetchUser id={id} key={id} />)}
-    <button onClick={()=>setIds(ids.concat(ids.length + 1))}>load a user</button>
-  </>
+  const [ids, setIds] = useState(Array.from({ length: 10 }, (_, index) => index + 1));
+  const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    if (ids.includes(10)) {
+      setLoading(false);
+    }
+  }, [ids]);
+
+  const loadMoreUsers = () => {
+    setLoading(true);
+    setIds((prevIds) => {
+      const nextId = prevIds[prevIds.length - 1] + 1;
+      return [...prevIds, nextId];
+    });
+  };
+
+  return (
+    <>
+      {ids.map((id) => (
+        <FetchUser id={id} key={id} />
+      ))}
+      {loading ? (
+        <p>Loading...</p>
+      ) : (
+        <button onClick={loadMoreUsers}>Load More Users</button>
+      )}
+    </>
+  );
 }
