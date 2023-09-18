@@ -1,49 +1,52 @@
 import React from 'react';
 
-// Contact information component
 const ContactInfo = ({ email, phone, website }) => (
-  <span>
-    📧<a href={`mailto:${email}`}>{email}</a> 📞<a href={`tel:${phone}`}>{phone}</a> 🌐<a href={`http://${website}`}>{website}</a>
-  </span>
+  <>
+    <td>📧<a href={`mailto:${email}`}>{email}</a></td>
+    <td>📞<a href={`tel:${phone}`}>{phone}</a></td>
+    <td>🌐<a href={`http://${website}`}>{website}</a></td>
+  </>
 );
 
-// Address information component
 const AddressInfo = ({ street, suite, city, zipcode, lat, lng }) => (
-  <span title={zipcode}>
-    <a href={`https://maps.google.com/maps?ll=${lat},${lng}`}>{street}, {suite}, {city}</a>
-  </span>
+  <td>
+    <a href={`https://maps.google.com/maps?ll=${lat},${lng}`}>
+      {street}, {suite}, {city}
+    </a>
+  </td>
 );
 
-// Company information component
 const CompanyInfo = ({ name, catchPhrase, bs }) => (
-  <span>
+  <td>
     <b>{name}</b><br />
     {catchPhrase}<br />
     {bs}
-  </span>
+  </td>
 );
 
-const OneUser = ({ user }) => {
-  // Destructure user object
+const OneUser = ({ id, user, onDelete }) => { // Pass onDelete as a prop
   const {
-    id,
-    name,
     username,
+    name,
     email,
-    address: { street, suite, city, zipcode, geo: { lat, lng } },
     phone,
     website,
+    address: { street, suite, city, zipcode, geo: { lat, lng } },
     company: { name: companyName, catchPhrase, bs },
   } = user;
 
   return (
-    <fieldset className="user-card">
-      <legend>#{id} {username}</legend>
-      <h3>{name}</h3>
+    <tr>
+      <td>ID: {id}</td>
+      <td>Username: {username}</td>
+      <td>Name: {name}</td>
       <ContactInfo email={email} phone={phone} website={website} />
       <AddressInfo street={street} suite={suite} city={city} zipcode={zipcode} lat={lat} lng={lng} />
       <CompanyInfo name={companyName} catchPhrase={catchPhrase} bs={bs} />
-    </fieldset>
+      <td>
+        <button onClick={() => onDelete(id)}>X</button>
+      </td>
+    </tr>
   );
 };
 

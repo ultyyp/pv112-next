@@ -5,8 +5,9 @@ const pages = [
     {href:'/', name:'Home'},
     {href:'/about', name:'About'},
     {href:'/users', name:'Users'},
-    { href: '/users-on-click', name: 'Users (on click)'},
+    
 ]
+//{ href: '/users-on-click', name: 'Users (on click)'},
 
 export default function Header(){
     return <>

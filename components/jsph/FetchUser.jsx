@@ -1,10 +1,12 @@
 import { useEffect, useState } from "react";
 import OneUser from "./OneUser";
 
-export default function FetchUser({ id }) {
+export default function FetchUser({ id, onDelete }) {
   const
     [user, setUser] = useState(null),
-    [error, setError] = useState(null);
+    [error, setError] = useState(null),
+    ID = id,
+    ONDELETE = onDelete;
 
   useEffect(() => {
     async function f() {
@@ -24,7 +26,7 @@ export default function FetchUser({ id }) {
   if (error)
     return <>Error={error.message}</>;
   if (user)
-    return <OneUser user={user} />
+    return <OneUser id={ID} user={user} onDelete={ONDELETE} />
 
   return <>loading...</>;
 }
