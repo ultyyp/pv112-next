@@ -24,7 +24,7 @@ const CompanyInfo = ({ name, catchPhrase, bs }) => (
   </td>
 );
 
-const OneUser = ({ id, user, onDelete }) => { // Pass onDelete as a prop
+const OneUser = ({ id, user, onDelete }) => {
   const {
     username,
     name,

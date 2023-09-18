@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import FetchUser from "./FetchUser";
-import OneUser from "./OneUser"; // Import the OneUser component
 
 export default function GetUsers() {
   const [ids, setIds] = useState(Array.from({ length: 10 }, (_, index) => index + 1));
@@ -12,7 +11,7 @@ export default function GetUsers() {
     }
   }, [ids]);
 
-  // Function to handle deleting a user by ID
+  
   const deleteUser = (idToDelete) => {
     setIds((prevIds) => prevIds.filter((id) => id !== idToDelete));
   };
