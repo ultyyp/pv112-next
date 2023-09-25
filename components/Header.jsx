@@ -5,6 +5,7 @@ const pages = [
     {href:'/', name:'Home'},
     {href:'/about', name:'About'},
     {href:'/users', name:'Users'},
+    {href:'/userjsonserver', name:'UsersJsonServer'},
     
 ]
 //{ href: '/users-on-click', name: 'Users (on click)'},
