@@ -6,6 +6,7 @@ const pages = [
     {href:'/about', name:'About'},
     {href:'/users', name:'Users'},
     {href:'/userjsonserver', name:'UsersJsonServer'},
+    {href:'/omdbapi', name: 'OmdbAPIMovies'},
     
 ]
 //{ href: '/users-on-click', name: 'Users (on click)'},

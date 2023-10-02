@@ -1,0 +1,22 @@
+.movietable {
+    font-size: 16px; /* Adjust the font size as needed */
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .movietable th,
+  .movietable td {
+    padding: 10px;
+    text-align: left;
+    border: 1px solid #ddd;
+  }
+  
+  .movietitle {
+    font-size: 20px; /* Larger font size for movie titles */
+    font-weight: bold;
+  }
+  
+  .movieposter {
+    max-width: 100px; /* Adjust the max-width for smaller images */
+  }
+  
