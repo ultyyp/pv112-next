@@ -4,10 +4,13 @@ import styles from './MovieTable.module.css';
 function MovieTable() {
   const [movies, setMovies] = useState([]);
   const [page, setPage] = useState(1);
+  const [searchQuery, setSearchQuery] = useState('movie');
 
   useEffect(() => {
+    const query = searchQuery.trim() === '' ? 'movie' : searchQuery;
+
     const apiKey = 'fcf74b8d';
-    const apiUrl = `https://www.omdbapi.com/?s=movie&type=movie&apikey=${apiKey}&page=${page}`;
+    const apiUrl = `https://www.omdbapi.com/?s=${query}&type=movie&page=${page}&apikey=${apiKey}`;
 
     async function fetchMovies() {
       try {
@@ -17,7 +20,7 @@ function MovieTable() {
         }
         const data = await response.json();
         if (data.Search) {
-          setMovies((prevMovies) => [...prevMovies, ...data.Search]);
+          setMovies(data.Search);
         }
       } catch (error) {
         console.error('Error fetching data:', error);
@@ -25,15 +28,25 @@ function MovieTable() {
     }
 
     fetchMovies();
-  }, [page]);
+  }, [page, searchQuery]);
 
   const loadMore = () => {
     setPage(page + 1);
   };
 
+  const handleSearch = (event) => {
+    setSearchQuery(event.target.value);
+  };
+
   return (
     <div>
       <h2>Movies from OMDB API</h2>
+      <input
+        type="text"
+        placeholder="Search movies..."
+        value={searchQuery}
+        onChange={handleSearch}
+      />
       <table className={styles.movietable}>
         <thead>
           <tr>
